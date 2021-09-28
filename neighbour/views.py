@@ -65,3 +65,20 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/registration_form.html', {'form': form, 'name':name})
+
+@login_required
+def search_business(request):
+    """
+    Function that searches for projects
+    """
+    if 'business' in request.GET and request.GET["business"]:
+        search_term = request.GET.get("business")
+        searched_business = Business.objects.filter(name__icontains=search_term)
+        message = f"{search_term}"
+        businesses = Business.objects.all()
+        
+        return render(request, 'temps/search.html', {"message": message, "businesses": searched_business})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'temps/search.html', {"message": message})
