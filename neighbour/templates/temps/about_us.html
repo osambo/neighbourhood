@@ -1,0 +1,36 @@
+{%extends 'temps/base.html'%} {% load bootstrap4 %} {% load static%} {%block title%} About Us {%endblock%} {% block styles %} {% bootstrap_css %}
+<link href='https://fonts.googleapis.com/css?family=Hanalei Fill' rel='stylesheet'>
+<link rel="stylesheet" href="{% static 'css/index.css' %}"> {% endblock %} {%block content%} {{block.super}}
+<div class="container-fluid" style="background-color: rgb(172, 24, 73); height: 100vh;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4  col-md-4 " style="margin-top: 10px; margin-top: 6%;">
+                <div class="card" style="font-size: 1em; opacity: 80%;">
+                    <div class="card-header" style="font-size: 1em; background-color: rgb(118, 238, 212);">
+                        Contact Us
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Email: www.digital@neighbourhood.com</li>
+                        <li class="list-group-item">Address: 43018-00100 Nairobi,Kenya</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12" style="font-size: 1em; background-color:rgb(118, 238, 212); border-radius: 5px; margin-top: 10px;opacity: 80%; margin-top: 6%;">
+                <legend style="text-align: center;">About Us</legend>
+                <p>My neighborhood is a hub for trusted connections and the exchange of helpful information, goods, and services. We believe that by bringing neighbours together, we can create a kinder world where everyone has a neighborhood they can rely
+                    on. Building connections in the real world is a universal human need. With that fact, neighborhoods are one of the most important and useful communities in our lives.</p>
+                <ul>
+                    <li>Build a stronger neighbourhood through communication</li>
+                    <li>Spread the word about a lost dog</li>
+                    <li>Recommend and discover favorite local businesses</li>
+                    <li>Post a job opportunity</li>
+                    <li>Receive important safety information from local agencies</li>
+                    <li>Get to know your neighbours</li>
+                </ul>
+                <p>Neighborhood is free, and it’s easy to <a href="" class="label label-info">Sign up</a></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock%}
