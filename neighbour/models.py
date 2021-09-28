@@ -75,3 +75,13 @@ class Business(models.Model):
 
     def update_business(self):
         self.save()
+class Post(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    title=models.CharField(max_length=60)
+    post=models.TextField()
+    neighbourhood = models.ForeignKey(Neighbourhood,on_delete = models.CASCADE,null=True)
+    posted=models.DateTimeField(auto_now_add=True) 
+    
+
+    def __str__(self):
+        return self.title
