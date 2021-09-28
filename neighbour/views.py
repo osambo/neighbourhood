@@ -138,3 +138,30 @@ def post(request):
         
     return render(request,'temps/post.html',{'form':form, 'posts':posts})
 
+@login_required
+def business(request):
+    current_user = request.user
+    neighbourhood = Profile.objects.get(user = current_user).neighbourhood
+    if request.method == 'POST':
+        form = BusinessForm(request.POST)
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.user = current_user
+            business.neighbourhood = neighbourhood
+            business.save()
+            return redirect('business')
+    else:
+        form = BusinessForm()
+
+    try:
+        businesses = Business.objects.filter(neighbourhood = neighbourhood)
+    except:
+        businesses = None
+
+    return render(request,'temps/business.html',{"businesses":businesses,"form":form})
+
+class BusinessList(APIView):
+    def get(self, request, format=None):
+        all_businesses = Business.objects.all()
+        serializers = BusinessSerializer(all_businesses, many=True)
+        return Response(serializers.data)
