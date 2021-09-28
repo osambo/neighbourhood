@@ -82,3 +82,31 @@ def search_business(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'temps/search.html', {"message": message})
+
+@login_required
+def edit_profile(request,username):
+    current_user = request.user
+    if request.method == 'POST':
+        try:
+            profile = Profile.objects.get(user=current_user)
+            form = UpdateProfile(request.POST,instance=profile)
+            if form.is_valid():
+                profile = form.save(commit=False)
+                profile.user = current_user
+                profile.save()
+            return redirect('index')
+        except:
+            form = UpdateProfile(request.POST)
+            if form.is_valid():
+                profile = form.save(commit=False)
+                profile.user = current_user
+                profile.save()
+            return redirect('index')
+    else:
+        if Profile.objects.filter(user=current_user):
+            profile = Profile.objects.get(user=current_user)
+            form = UpdateProfile(instance=profile)
+        else:
+            form = UpdateProfile()
+    return render(request,'temps/edit_profile.html',{"form":form})
+
