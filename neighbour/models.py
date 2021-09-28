@@ -85,3 +85,17 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class Comment(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE,null=True)
+    comment=models.CharField(max_length=255)
+    posted=models.DateTimeField(auto_now_add=True) 
+
+    @classmethod
+    def get_comments(cls):
+        comments = cls.objects.all()
+        return comments
+
+    def save_commment(self):
+        self.save()
