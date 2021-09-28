@@ -109,4 +109,32 @@ def edit_profile(request,username):
         else:
             form = UpdateProfile()
     return render(request,'temps/edit_profile.html',{"form":form})
+@login_required
+def post(request):
+
+    current_user=request.user
+
+    try:
+        profile = Profile.objects.get(user = current_user)
+    except:
+        return redirect('edit_profile',username = current_user.username)
+
+    try:
+        posts = Post.objects.filter(neighbourhood = profile.neighbourhood)
+    except:
+        posts = None
+
+    if request.method=='POST':
+        form=PostForm(request.POST,request.FILES)
+        if form.is_valid():
+            post=form.save(commit=False)
+            post.user=current_user
+            post.neighbourhood = profile.neighbourhood
+            post.save()
+        return redirect('index')
+    
+    else:
+        form=PostForm()
+        
+    return render(request,'temps/post.html',{'form':form, 'posts':posts})
 
