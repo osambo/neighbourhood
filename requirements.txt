@@ -3,7 +3,15 @@ beautifulsoup4==4.10.0
 confusable-homoglyphs==3.2.0
 Django==3.2.7
 django-bootstrap4==3.0.1
+django-filter==21.1
+django-registration==3.2
+django-registration-redux==2.9
+djangorestframework==3.12.4
+importlib-metadata==4.8.1
+Markdown==3.3.4
 psycopg2==2.9.1
 pytz==2021.1
 soupsieve==2.2.1
 sqlparse==0.4.2
+whitenoise==5.3.0
+zipp==3.5.0
