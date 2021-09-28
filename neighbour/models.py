@@ -51,3 +51,27 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+class Business(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE,related_name = 'business_user')
+    name =models.CharField(max_length=60)
+    description = models.CharField(max_length = 150,null=True)
+    category = models.ForeignKey(Category, on_delete = models.CASCADE,null=True)
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE,related_name = 'business_neighbourhood')
+    email =models.EmailField(max_length=60, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    def create_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
+
+    @classmethod
+    def search_business(cls,search_term):
+        business = Business.objects.get(name__icontains=search_term)
+        return business
+
+    def update_business(self):
+        self.save()
