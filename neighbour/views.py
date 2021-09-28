@@ -40,3 +40,28 @@ def index(request):
 
 def about(request):
     return render(request, 'temps/about_us.html')
+
+@login_required
+def contacts(request):
+    return render(request,'temps/contacts.html')
+
+def signup(request):
+    name = "Sign Up"
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data.get('email')
+            name = form.cleaned_data.get('username')
+            send_an_mail(
+            'Welcome to Neighbourhood App.',
+            f'Hello {name},\n '
+            'Welcome to Neighbourhood App and have fun.',
+            'nyururukelvin99@gmail.com@gmail.com',
+            [email],
+            fail_silently=False,
+            )
+        return redirect('index')
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/registration_form.html', {'form': form, 'name':name})
