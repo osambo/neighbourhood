@@ -1,0 +1,35 @@
+{%extends 'temps/base.html'%} {% load bootstrap4 %} {% load static %} {% block styles %} {% bootstrap_css %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/index.css' %}"> {% endblock %} {% block content %} {{block.super}}
+<div class="container">
+
+    <div class="row" style="margin-top: 8%;">
+        {% if businesses %}
+        <legend class="header" style="color: rgb(24, 172, 24); text-align: center;">Searches for {{message}} </legend>
+        {% else %}
+        <legend class="header" style="color: rgb(24, 172, 24); text-align: center;">FOUND 0 BUSINESSES</legend>
+        {% endif %}
+
+    </div>
+    <div class="row">
+        {% for business in businesses %}
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card" style="width: 48rem; border: rgb(24, 172, 24); solid 1px;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Name: {{business.name}}</li>
+                        <li class="list-group-item">Description: {{business.description}}</li>
+                        <li class="list-group-item">Owner: {{business.user}}</li>
+                        <li class="list-group-item">Email: {{business.email}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+{% endblock %}
