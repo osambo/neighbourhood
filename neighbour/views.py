@@ -43,7 +43,7 @@ def about(request):
 
 @login_required
 def contacts(request):
-    return render(request,'temps/contacts.html')
+    return render(request,'temps/contact.html')
 
 def signup(request):
     name = "Sign Up"
