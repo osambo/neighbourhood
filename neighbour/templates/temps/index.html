@@ -32,7 +32,7 @@
         <span class="carousel-control-next-icon"></span>
     </a>
 </div>
-<div class="container-fluid" style="background-color: rgb(172, 24, 73); color: black;">
+<div class="container-fluid" style="background-color: rgb(50, 119, 71); color: black;">
     <div class="container">
         <div class="row">
             <div class="col m12">
@@ -47,7 +47,7 @@
                         <h5>{{post.title}}</h5>
                     </div>
                     <div class="card-body">
-                        <p class="card-text" style="color: crimson;">{{post.post}}</p>
+                        <p class="card-text" style="color: rgb(85, 53, 60);">{{post.post}}</p>
                         {% for comment in comments %} {%if post.id == comment.post.id%}
                         <p>Comment: {{comment.comment}} ~ {{comment.user}}</p>
                         {%endif%} {% endfor %}

@@ -141,20 +141,21 @@ def post(request):
 @login_required
 def business(request):
     current_user = request.user
-    neighbourhood = Profile.objects.get(user = current_user).neighbourhood
+    profile = Profile.objects.get(user=current_user)
+    print(profile.neighbourhood)
     if request.method == 'POST':
         form = BusinessForm(request.POST)
         if form.is_valid():
             business = form.save(commit=False)
             business.user = current_user
-            business.neighbourhood = neighbourhood
+            # business.neighbourhood = neighbourhood
             business.save()
             return redirect('business')
     else:
         form = BusinessForm()
 
     try:
-        businesses = Business.objects.filter(neighbourhood = neighbourhood)
+        businesses = Business.objects.filter(neighbourhood = profile.neighbourhood)
     except:
         businesses = None
 
