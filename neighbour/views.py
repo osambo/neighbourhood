@@ -57,7 +57,7 @@ def signup(request):
             'Welcome to Neighbourhood App.',
             f'Hello {name},\n '
             'Welcome to Neighbourhood App and have fun.',
-            'nyururukelvin99@gmail.com@gmail.com',
+            'felix339575@gmail.com@gmail.com',
             [email],
             fail_silently=False,
             )
